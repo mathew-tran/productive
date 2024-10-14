@@ -10,7 +10,6 @@ func _ready():
 	
 func _on_button_up():
 	bIsPlaying = !bIsPlaying
-	UpdateTexture()
 	release_focus()
 	emit_signal("CustomPress", bIsPlaying)
 	
@@ -22,4 +21,8 @@ func UpdateTexture():
 
 func ForceStop():
 	bIsPlaying = false
+	UpdateTexture()
+
+func ForcePlay():
+	bIsPlaying = true
 	UpdateTexture()

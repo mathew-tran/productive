@@ -1,13 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://bodlyhu4lywei"]
+[gd_scene load_steps=6 format=3 uid="uid://bodlyhu4lywei"]
 
 [ext_resource type="Script" path="res://Scripts/Goal.gd" id="1_1uym3"]
 [ext_resource type="PackedScene" uid="uid://3sltofvl4a3i" path="res://Scenes/PlayButton.tscn" id="1_ebre7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dy6u0"]
+bg_color = Color(0.0171898, 0.261709, 0.421107, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e342l"]
+bg_color = Color(0.0748453, 0.0748453, 0.0748452, 1)
+skew = Vector2(0.2, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4e0k"]
+skew = Vector2(0.2, 0)
 
 [node name="Goal" type="Control"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 3
 anchors_preset = 0
+pivot_offset = Vector2(250, 50)
 script = ExtResource("1_1uym3")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 511.0
+offset_bottom = 88.0
+
+[node name="ActivePanel" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.5
+offset_top = -45.0
+offset_right = 257.5
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dy6u0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(50, 50)
@@ -33,6 +70,9 @@ layout_mode = 2
 [node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_e342l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_g4e0k")
+value = 60.0
 
 [node name="HoursWorked" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2

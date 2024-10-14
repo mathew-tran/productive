@@ -2,15 +2,15 @@ extends Control
 
 class_name Goal
 
-var GoalName = "GoalName"
+@export var GoalName = "School"
 
 @onready var GoalTitle = $HBoxContainer/VBoxContainer/GoalTitle
 @onready var HoursWorked = $HBoxContainer/VBoxContainer/HoursWorked
 @onready var CompletionProgress = $HBoxContainer/VBoxContainer/HBoxContainer/ProgressBar
 
 var Seconds = 0.0
-var GoalInHours = 1
-var GoalInMinutes = 0
+@export var GoalInHours = 40
+@export var GoalInMinutes = 0
 
 var bHasBeenCompleted = false
 
@@ -19,10 +19,13 @@ signal GoalActivated(goal)
 func _ready():
 	Update()
 	Engine.time_scale = 60
+	
 	Initialize()
 	
 func Initialize():
 	CompletionProgress.min_value = 0
+	$Timer.start()
+	$Timer.paused = true
 	
 	var seconds = 0
 	seconds += GoalInMinutes * 60
@@ -66,14 +69,22 @@ func ConvertSecondsIntoText(seconds):
 
 func _on_button_custom_press(bIsPlaying):
 	if bIsPlaying:
-		$Timer.start()
-		emit_signal("GoalActivated", self)
+		Start()
 	else:
 		Stop()
+
+func Start():
+	$Timer.paused = false	
+	emit_signal("GoalActivated", self)
+	$HBoxContainer/Button.ForcePlay()
+	Helper.PlayStart()
 	
 func Stop():
-	$Timer.stop()
+	if $Timer.paused:
+		return
+	$Timer.paused = true
 	$HBoxContainer/Button.ForceStop()
+	Helper.PlayStop()
 
 func _on_timer_timeout():
 	Seconds += $Timer.wait_time * 100
@@ -82,3 +93,6 @@ func _on_timer_timeout():
 		Helper.PlayComplete()
 		
 	Update()
+
+func ShowActivePanel(bShow):
+	$Panel/ActivePanel.visible = bShow
