@@ -1,5 +1,7 @@
 extends Control
 
+class_name Goal
+
 var GoalName = "GoalName"
 
 @onready var GoalTitle = $HBoxContainer/VBoxContainer/GoalTitle
@@ -11,6 +13,8 @@ var GoalInHours = 1
 var GoalInMinutes = 0
 
 var bHasBeenCompleted = false
+
+signal GoalActivated(goal)
 
 func _ready():
 	Update()
@@ -27,7 +31,7 @@ func Initialize():
 	
 func Update():
 	GoalTitle.text = GoalName
-	HoursWorked.text = ConvertSecondsIntoText(Seconds) + "/" + GetGoalText()
+	HoursWorked.text = ConvertSecondsIntoText(Seconds) + " / " + GetGoalText()
 	CompletionProgress.value = Seconds	
 	
 	if Seconds >= CompletionProgress.max_value:
@@ -43,25 +47,33 @@ func GetGoalText():
 	
 	
 func GetTimeText(hours, minutes):
-	return str(round(hours)) + "h " + str(round(minutes)) + "m"
+	var result = ""
+	if hours > 0:
+		result += str(round(hours)).pad_zeros(2) + "h "
 	
-func ConvertSecondsIntoText(seconds):
+	result += str(round(minutes)).pad_zeros(2) + "m"
 	
+	return result
+	
+func ConvertSecondsIntoText(seconds):	
 	if seconds == 0:
 		return GetTimeText(0, 0)
 	var hours = int(seconds / 3600)
 	var minutes = int((int(seconds) % 3600) / 60)
 	
 	var result = GetTimeText(hours, minutes)
-
 	return result
 
 func _on_button_custom_press(bIsPlaying):
 	if bIsPlaying:
 		$Timer.start()
+		emit_signal("GoalActivated", self)
 	else:
-		$Timer.stop()
-
+		Stop()
+	
+func Stop():
+	$Timer.stop()
+	$HBoxContainer/Button.ForceStop()
 
 func _on_timer_timeout():
 	Seconds += $Timer.wait_time * 100

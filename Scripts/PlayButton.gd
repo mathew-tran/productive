@@ -19,3 +19,7 @@ func UpdateTexture():
 		theme = load("res://Themes/PausedTheme.tres")
 	else:
 		theme = load("res://Themes/PlayedTheme.tres")
+
+func ForceStop():
+	bIsPlaying = false
+	UpdateTexture()

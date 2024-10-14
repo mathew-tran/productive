@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="2.0283687"
-     inkscape:cx="491.03498"
-     inkscape:cy="125.96329"
+     inkscape:cx="215.44406"
+     inkscape:cy="138.78147"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-7"
@@ -45,7 +45,10 @@
        height="26.349171"
        x="7.4063516"
        y="34.905201"
-       ry="3.873913" />
+       ry="3.873913"
+       inkscape:export-filename="PlayNormal.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <rect
        style="fill:#f04816;stroke-width:0.1"
        id="rect4"
@@ -53,7 +56,10 @@
        height="26.349171"
        x="7.5367913"
        y="5.0341153"
-       ry="3.5049689" />
+       ry="3.5049689"
+       inkscape:export-filename="PauseNormal.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <path
        id="rect2"
        style="fill:#211f21;stroke-width:0.113226"
@@ -84,7 +90,10 @@
        height="26.349171"
        x="35.999519"
        y="34.905201"
-       ry="3.5049689" />
+       ry="3.5049689"
+       inkscape:export-filename="PlayHovered.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <path
        id="path6"
        style="fill:#211f21;stroke-width:0.113226"
@@ -97,7 +106,10 @@
        height="26.349171"
        x="35.945488"
        y="5.0341153"
-       ry="3.689441" />
+       ry="3.689441"
+       inkscape:export-filename="PauseHovered.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <g
        id="g9"
        transform="translate(-35.418633,-34.311801)">
@@ -121,14 +133,12 @@
        id="rect10"
        width="25.175198"
        height="26.349171"
-       x="64.22374"
-       y="34.905201"
-       ry="4.0583849" />
-    <path
-       id="path10"
-       style="fill:#211f21;stroke-width:0.113226"
-       d="m 70.749109,38.292686 v 18.21938 l 0.50406,0.31129 14.751,-9.109914 z"
-       sodipodi:nodetypes="ccccc" />
+       x="63.884384"
+       y="34.383434"
+       ry="4.0583849"
+       inkscape:export-filename="PlayPressed.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <rect
        style="fill:#e11800;stroke-width:0.1"
        id="rect11"
@@ -136,7 +146,10 @@
        height="26.349171"
        x="63.062878"
        y="5.0341153"
-       ry="2.5826087" />
+       ry="2.5826087"
+       inkscape:export-filename="PausePressed.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <g
        id="g13"
        transform="translate(-8.3012417,-34.311801)">
@@ -155,22 +168,10 @@
          x="85.804123"
          y="43.665844" />
     </g>
-    <rect
-       style="fill:#f99523;stroke-width:0.1"
-       id="rect14"
-       width="2.7670805"
-       height="5.7186337"
-       x="115.66397"
-       y="17.893787"
-       ry="1.1226583"
-       rx="0" />
-    <rect
-       style="fill:#f99523;stroke-width:0.1"
-       id="rect15"
-       width="8.8700171"
-       height="5.4133196"
-       x="118.63649"
-       y="18.066137"
-       ry="1.1226583" />
+    <path
+       id="path18"
+       style="fill:#211f21;stroke-width:0.113226"
+       d="m 69.373617,38.292686 v 18.21938 l 0.50406,0.31129 14.751,-9.109914 z"
+       sodipodi:nodetypes="ccccc" />
   </g>
 </svg>
