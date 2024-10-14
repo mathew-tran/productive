@@ -1,0 +1,26 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cme5wkql07egr"]
+
+[ext_resource type="Texture2D" uid="uid://dlw1e212pa2qf" path="res://Art/PauseNormal.png" id="1_t23c2"]
+[ext_resource type="Texture2D" uid="uid://bou2rdm2r70mk" path="res://Art/PauseHovered.png" id="2_a00rr"]
+[ext_resource type="Texture2D" uid="uid://cn6y12rdtmpgp" path="res://Art/PausePressed.png" id="3_ikse8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nurp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_segmv"]
+texture = ExtResource("1_t23c2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0d0f3"]
+texture = ExtResource("2_a00rr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fncxf"]
+texture = ExtResource("1_t23c2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_esx3j"]
+texture = ExtResource("3_ikse8")
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_6nurp")
+Button/styles/focus = SubResource("StyleBoxTexture_segmv")
+Button/styles/hover = SubResource("StyleBoxTexture_0d0f3")
+Button/styles/normal = SubResource("StyleBoxTexture_fncxf")
+Button/styles/pressed = SubResource("StyleBoxTexture_esx3j")

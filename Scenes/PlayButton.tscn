@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://3sltofvl4a3i"]
+
+[ext_resource type="Theme" uid="uid://3rp22e8w5jse" path="res://Themes/PlayedTheme.tres" id="1_w8gt3"]
+[ext_resource type="Script" path="res://Scripts/PlayButton.gd" id="2_umxrl"]
+
+[node name="PlayButton" type="Button"]
+custom_minimum_size = Vector2(80, 80)
+theme = ExtResource("1_w8gt3")
+script = ExtResource("2_umxrl")
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]
