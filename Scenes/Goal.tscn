@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bodlyhu4lywei"]
+[gd_scene load_steps=3 format=3 uid="uid://bodlyhu4lywei"]
 
+[ext_resource type="Script" path="res://Scripts/Goal.gd" id="1_1uym3"]
 [ext_resource type="PackedScene" uid="uid://3sltofvl4a3i" path="res://Scenes/PlayButton.tscn" id="1_ebre7"]
 
 [node name="Goal" type="Control"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_1uym3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(50, 50)
@@ -21,7 +23,7 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="GoalTitle" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Side Project"
 
@@ -32,6 +34,12 @@ layout_mode = 2
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="HoursWorked" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "0.2 / 1.2 hours"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="CustomPress" from="HBoxContainer/Button" to="." method="_on_button_custom_press"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
