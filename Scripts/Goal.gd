@@ -55,21 +55,18 @@ func ConvertSecondsIntoText(seconds):
 	var result = GetTimeText(hours, minutes)
 
 	return result
-	
-	
-
 
 func _on_button_custom_press(bIsPlaying):
 	if bIsPlaying:
 		$Timer.start()
 	else:
 		$Timer.stop()
-		
 
 
 func _on_timer_timeout():
 	Seconds += $Timer.wait_time * 100
 	if bHasBeenCompleted == false and Seconds >= CompletionProgress.max_value:
 		bHasBeenCompleted = true
+		Helper.PlayComplete()
 		
 	Update()
