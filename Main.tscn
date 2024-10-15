@@ -51,7 +51,8 @@ GoalInHours = 3
 [node name="Goal4" parent="VBoxContainer/GoalContainer" instance=ExtResource("1_b47w2")]
 layout_mode = 2
 GoalName = "Clean the house"
-GoalInHours = 2
+GoalInHours = 0
+GoalInMinutes = 1
 
 [node name="Node" type="Node" parent="."]
 

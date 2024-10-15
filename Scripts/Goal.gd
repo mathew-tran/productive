@@ -18,9 +18,9 @@ signal GoalActivated(goal)
 
 func _ready():
 	Update()
-	Engine.time_scale = 60
 	
 	Initialize()
+
 	
 func Initialize():
 	CompletionProgress.min_value = 0
@@ -46,25 +46,31 @@ func Update():
 	CompletionProgress.modulate = lerp(Color.YELLOW, Color.GREEN, weight)
 	
 func GetGoalText():
-	return GetTimeText(GoalInHours, GoalInMinutes)
+	return GetTimeText(0, GoalInHours, GoalInMinutes)
 	
 	
-func GetTimeText(hours, minutes):
+func GetTimeText(seconds, hours, minutes):
 	var result = ""
-	if hours > 0:
-		result += str(round(hours)).pad_zeros(2) + "h "
 	
-	result += str(round(minutes)).pad_zeros(2) + "m"
-	
+	if hours != 0 or minutes != 0:
+		if hours > 0:
+			result += str(round(hours)).pad_zeros(2) + "h "
+		
+		result += str(round(minutes)).pad_zeros(2) + "m"
+	else:
+		if seconds > 0:
+			result += str(round(seconds)).pad_zeros(2) + "sec"
+		else:
+			result = "--"
 	return result
 	
 func ConvertSecondsIntoText(seconds):	
 	if seconds == 0:
-		return GetTimeText(0, 0)
+		return GetTimeText(0, 0, 0)
 	var hours = int(seconds / 3600)
 	var minutes = int((int(seconds) % 3600) / 60)
 	
-	var result = GetTimeText(hours, minutes)
+	var result = GetTimeText(seconds, hours, minutes)
 	return result
 
 func _on_button_custom_press(bIsPlaying):
@@ -78,6 +84,7 @@ func Start():
 	emit_signal("GoalActivated", self)
 	$HBoxContainer/Button.ForcePlay()
 	Helper.PlayStart()
+	$AnimationPlayer.play("anim")
 	
 func Stop():
 	if $Timer.paused:
@@ -85,9 +92,10 @@ func Stop():
 	$Timer.paused = true
 	$HBoxContainer/Button.ForceStop()
 	Helper.PlayStop()
+	$AnimationPlayer.stop()
 
 func _on_timer_timeout():
-	Seconds += $Timer.wait_time * 100
+	Seconds += $Timer.wait_time
 	if bHasBeenCompleted == false and Seconds >= CompletionProgress.max_value:
 		bHasBeenCompleted = true
 		Helper.PlayComplete()
