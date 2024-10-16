@@ -58,6 +58,7 @@ func _on_confirm_button_up():
 			AddGoal()
 		elif CurrentMode == MODE.EDIT:
 			UpdateGoal()
+		SaveManager.Save()
 		visible = false
 		
 	else:
@@ -70,3 +71,4 @@ func _on_discard_visibility_changed():
 		Game.InMenu.emit()
 	else:
 		Game.OutOfMenu.emit()
+	

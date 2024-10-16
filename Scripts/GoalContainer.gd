@@ -10,11 +10,50 @@ var bIsPaused = false
 
 func _ready():
 	for goal in get_children():
-		if goal is Goal:
-			goal.GoalActivated.connect(Callable(self, "OnGoalActivated"))
-			goal.ShowActivePanel(false)
+		goal.queue_free()
+	await get_tree().process_frame
+	
+	SaveManager.BeginSave.connect(OnSave)
+	SaveManager.CompleteLoad.connect(OnCompleteLoad)
+
+		
+	
+	var data = SaveManager.LoadData("Goals")
+	if data:
+		CreateGoalsFromData(data)
+		
+	else:
+		AddGoal("Work", 1, 0)
 			
-			
+
+func GetData():
+	var data = {}
+	for x in range(0, get_child_count()):
+		data[x] = get_child(x).GetData()
+	return data
+		
+func OnSave():
+	SaveManager.SaveData("Goals", GetData())
+		
+func OnCompleteLoad():
+	for goal in get_children():
+		goal.queue_free()
+	var data = SaveManager.LoadData("Goals")
+	if data:
+		CreateGoalsFromData(data)
+
+func CreateGoalsFromData(data):
+	
+	print("Attempting to create data from save" + str(data))
+	for key in data.keys():
+		var instance = AddGoal(data[key]["GoalName"], data[key]["GoalInHours"], data[key]["GoalInMinutes"])
+		instance.StoredSeconds = data[key]["StoredSeconds"]
+		instance.StartTime = data[key]["TimeActivated"]
+		if instance.StartTime != null:
+			instance.Stop(true)
+		instance.Update()
+		
+	
 func OnGoalActivated(goal):
 	LastActivatedGoal = goal
 	bIsPaused = false
@@ -25,7 +64,8 @@ func OnGoalActivated(goal):
 				goalchild.ShowActivePanel(false)
 			else:
 				goalchild.ShowActivePanel(true)
-				
+
+	
 func StopAllGoals():
 	for goalchild in get_children():
 		if goalchild is Goal:
@@ -68,4 +108,7 @@ func AddGoal(goalName, hours, minutes):
 	instance.GoalName = goalName
 	instance.GoalInHours = hours
 	instance.GoalInMinutes = minutes
+	instance.GoalActivated.connect(Callable(self, "OnGoalActivated"))
+	instance.ShowActivePanel(false)
 	add_child(instance)
+	return instance

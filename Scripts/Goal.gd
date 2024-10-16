@@ -22,6 +22,8 @@ func GetData():
 		"GoalName" : GoalName,
 		"TimeActivated" : StartTime,
 		"StoredSeconds" : StoredSeconds,
+		"GoalInHours" : GoalInHours,
+		"GoalInMinutes" : GoalInMinutes
 	}
 	
 func Load(data):
@@ -71,19 +73,24 @@ func GetGoalText():
 	return GetTimeText(0, GoalInHours, GoalInMinutes)
 	
 	
-func GetTimeText(seconds, hours, minutes):
+func GetTimeText(seconds, hours, minutes, bShowAll = false):
 	var result = ""
 	
-	if hours != 0 or minutes != 0:
-		if hours > 0:
-			result += str(round(hours)).pad_zeros(2) + "h "
-		
-		result += str(round(minutes)).pad_zeros(2) + "m"
+	if bShowAll:
+		result += str(round(hours)).pad_zeros(2) + "h "		
+		result += str(round(minutes)).pad_zeros(2) + "m "
+		result += str(int(seconds) % 60).pad_zeros(2) + "sec"
 	else:
-		if seconds > 0:
-			result += str(round(seconds)).pad_zeros(2) + "sec"
+		if hours != 0 or minutes != 0:
+			if hours > 0:
+				result += str(round(hours)).pad_zeros(2) + "h "
+			
+			result += str(round(minutes)).pad_zeros(2) + "m"
 		else:
-			result = "--"
+			if seconds > 0:
+				result += str((int(seconds % 60))).pad_zeros(2) + "sec"
+			else:
+				result = "--"
 	return result
 	
 func ConvertSecondsIntoText(seconds):	
@@ -92,7 +99,7 @@ func ConvertSecondsIntoText(seconds):
 	var hours = int(seconds / 3600)
 	var minutes = int((int(seconds) % 3600) / 60)
 	
-	var result = GetTimeText(seconds, hours, minutes)
+	var result = GetTimeText(seconds, hours, minutes, true)
 	return result
 
 func _on_button_custom_press(bIsPlaying):
@@ -108,19 +115,26 @@ func Start():
 	$HBoxContainer/Button.ForcePlay()
 	Helper.PlayStart()
 	$AnimationPlayer.play("anim")
+	SaveManager.Save()
 	
-func Stop():
-	if $Timer.paused:
+func Stop(bForce = false):
+	if $Timer.paused and bForce == false:
 		return
 	$Timer.paused = true
 	$HBoxContainer/Button.ForceStop()
 	Helper.PlayStop()
 	$AnimationPlayer.stop()
 	
+	UpdateStoredTime()
+	
+	
+
+func UpdateStoredTime():
 	if StartTime != null:
 		StoredSeconds += Time.get_unix_time_from_system() - StartTime
 		StartTime = null
-
+		SaveManager.Save()
+	
 func _on_timer_timeout():
 	if bHasBeenCompleted == false and GetTotalSeconds() >= CompletionProgress.max_value:
 		bHasBeenCompleted = true

@@ -12,7 +12,6 @@ func _ready():
 	InMenu.connect(OnInMenu)
 	OutOfMenu.connect(OnOutOfMenu)
 	
-	
 func OnInMenu():
 	bIsInMenu = true
 	
