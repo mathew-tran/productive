@@ -8,19 +8,30 @@ class_name Goal
 @onready var HoursWorked = $HBoxContainer/VBoxContainer/HoursWorked
 @onready var CompletionProgress = $HBoxContainer/VBoxContainer/HBoxContainer/ProgressBar
 
-var Seconds = 0.0
+var StoredSeconds = 0.0
 @export var GoalInHours = 40
 @export var GoalInMinutes = 0
 
+var StartTime
 var bHasBeenCompleted = false
 
 signal GoalActivated(goal)
 
-func _ready():
-	Update()
+func GetData():
+	return {
+		"GoalName" : GoalName,
+		"TimeActivated" : StartTime,
+		"StoredSeconds" : StoredSeconds,
+	}
 	
+func Load(data):
+	GoalName = data["GoalName"]
+	StartTime = data["TimeActivated"]
+	StoredSeconds = data["StoredSeconds"]
+	
+func _ready():
+	Update()	
 	Initialize()
-
 	
 func Initialize():
 	CompletionProgress.min_value = 0
@@ -32,14 +43,25 @@ func Initialize():
 	seconds += GoalInHours * 60 * 60
 	CompletionProgress.max_value = seconds
 	
+func GetTotalSeconds():
+	var totalSeconds = StoredSeconds
+	
+	if StartTime != null:
+		var currentTime = Time.get_unix_time_from_system()
+		var currentSeconds = currentTime - StartTime
+		totalSeconds += currentSeconds
+	return totalSeconds
+	
 func Update():
 	GoalTitle.text = GoalName
-	HoursWorked.text = ConvertSecondsIntoText(Seconds) + " / " + GetGoalText()
-	CompletionProgress.value = Seconds	
 	
-	if Seconds >= CompletionProgress.max_value:
+	var totalSeconds = GetTotalSeconds()
+	HoursWorked.text = ConvertSecondsIntoText(totalSeconds) + " / " + GetGoalText()
+	CompletionProgress.value = totalSeconds	
+	
+	if totalSeconds >= CompletionProgress.max_value:
 		HoursWorked.modulate = Color.GREEN
-	elif Seconds < CompletionProgress.max_value:
+	elif totalSeconds < CompletionProgress.max_value:
 		HoursWorked.modulate = Color.WHITE
 		
 	var weight = CompletionProgress.value / CompletionProgress.max_value
@@ -80,6 +102,7 @@ func _on_button_custom_press(bIsPlaying):
 		Stop()
 
 func Start():
+	StartTime = Time.get_unix_time_from_system()
 	$Timer.paused = false	
 	emit_signal("GoalActivated", self)
 	$HBoxContainer/Button.ForcePlay()
@@ -93,10 +116,13 @@ func Stop():
 	$HBoxContainer/Button.ForceStop()
 	Helper.PlayStop()
 	$AnimationPlayer.stop()
+	
+	if StartTime != null:
+		StoredSeconds += Time.get_unix_time_from_system() - StartTime
+		StartTime = null
 
 func _on_timer_timeout():
-	Seconds += $Timer.wait_time
-	if bHasBeenCompleted == false and Seconds >= CompletionProgress.max_value:
+	if bHasBeenCompleted == false and GetTotalSeconds() >= CompletionProgress.max_value:
 		bHasBeenCompleted = true
 		Helper.PlayComplete()
 		

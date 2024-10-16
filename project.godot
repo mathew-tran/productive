@@ -19,9 +19,12 @@ config/icon="res://icon.svg"
 
 Helper="*res://Scripts/Autoload/Helper.gd"
 Game="*res://Scripts/Autoload/Game.gd"
+SaveManager="*res://Scripts/Autoload/SaveManager.gd"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 
 [input]

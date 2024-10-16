@@ -41,7 +41,7 @@ offset_left = 18.0
 offset_top = 81.0
 offset_right = 518.0
 offset_bottom = 493.0
-scale = Vector2(0.75, 0.75)
+scale = Vector2(1.2, 1.2)
 theme_override_constants/separation = 30
 
 [node name="GoalContainer" type="VBoxContainer" parent="VBoxContainer" groups=["GoalContainer"]]
