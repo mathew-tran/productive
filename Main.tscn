@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdu5oj5mt0ygf"]
+[gd_scene load_steps=7 format=3 uid="uid://bdu5oj5mt0ygf"]
 
 [ext_resource type="PackedScene" uid="uid://bodlyhu4lywei" path="res://Scenes/Goal.tscn" id="1_b47w2"]
 [ext_resource type="Script" path="res://Scripts/GoalContainer.gd" id="1_ru3c7"]
 [ext_resource type="AudioStream" uid="uid://cgbtwfv1xh10" path="res://Audio/switch17.wav" id="2_cdta8"]
+[ext_resource type="Script" path="res://Scripts/InputFields/AddGoalButton.gd" id="4_ak44c"]
+[ext_resource type="PackedScene" uid="uid://bl3b5cw4p7i4d" path="res://Scenes/GoalEditPopup.tscn" id="4_nuibf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2rn8"]
 bg_color = Color(2.03052e-08, 0.052976, 0.0330747, 1)
@@ -42,7 +44,7 @@ offset_bottom = 493.0
 scale = Vector2(0.75, 0.75)
 theme_override_constants/separation = 30
 
-[node name="GoalContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="GoalContainer" type="VBoxContainer" parent="VBoxContainer" groups=["GoalContainer"]]
 layout_mode = 2
 size_flags_vertical = 0
 script = ExtResource("1_ru3c7")
@@ -52,31 +54,23 @@ layout_mode = 2
 GoalName = "Sleep"
 GoalInHours = 56
 
-[node name="Goal8" parent="VBoxContainer/GoalContainer" instance=ExtResource("1_b47w2")]
-layout_mode = 2
-GoalName = "Eat"
-GoalInHours = 14
-
-[node name="Goal5" parent="VBoxContainer/GoalContainer" instance=ExtResource("1_b47w2")]
-layout_mode = 2
-GoalName = "Work"
-
-[node name="Goal2" parent="VBoxContainer/GoalContainer" instance=ExtResource("1_b47w2")]
-layout_mode = 2
-GoalName = "Relaxing"
-GoalInHours = 15
-
-[node name="Goal3" parent="VBoxContainer/GoalContainer" instance=ExtResource("1_b47w2")]
-layout_mode = 2
-GoalName = "Reading"
-GoalInHours = 2
-
-[node name="Goal6" parent="VBoxContainer/GoalContainer" instance=ExtResource("1_b47w2")]
-layout_mode = 2
-GoalName = "Side project"
-GoalInHours = 15
-
 [node name="Node" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Node" groups=["SFX"]]
 stream = ExtResource("2_cdta8")
+
+[node name="AddGoalButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 0
+offset_left = 459.0
+offset_top = 15.0
+offset_right = 559.0
+offset_bottom = 65.0
+text = "Add Goal"
+script = ExtResource("4_ak44c")
+
+[node name="GoalEditPopup" parent="." instance=ExtResource("4_nuibf")]
+visible = false
+layout_mode = 1
+
+[connection signal="button_up" from="AddGoalButton" to="AddGoalButton" method="_on_button_up"]

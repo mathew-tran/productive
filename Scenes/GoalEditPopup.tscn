@@ -1,0 +1,148 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl3b5cw4p7i4d"]
+
+[ext_resource type="Theme" uid="uid://bn6x1rblbqp5t" path="res://Themes/TextFieldTheme.tres" id="1_avtex"]
+[ext_resource type="Script" path="res://Scripts/GoalEditPopup.gd" id="1_bnght"]
+[ext_resource type="Script" path="res://Scripts/InputFields/GoalEdit.gd" id="3_wjyhb"]
+[ext_resource type="Script" path="res://Scripts/InputFields/HourEdit.gd" id="4_sggm4"]
+[ext_resource type="Script" path="res://Scripts/InputFields/MinuteEdit.gd" id="5_qovd7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13adb"]
+bg_color = Color(5.05373e-06, 0.717926, 0.370038, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8ci6"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="GoalEditPopup" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bnght")
+
+[node name="Content" type="Panel" parent="."]
+custom_minimum_size = Vector2(450, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -247.0
+offset_right = 225.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_13adb")
+
+[node name="Title" type="Panel" parent="Content"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+offset_left = 3.0
+offset_top = -18.0
+offset_right = 448.0
+offset_bottom = 33.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_s8ci6")
+
+[node name="Label" type="Label" parent="Content/Title"]
+layout_mode = 2
+offset_left = 5.0
+offset_top = -4.0
+offset_right = 440.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 30
+text = "Edit Goal"
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -89.0
+offset_right = 198.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="GridContainer" type="GridContainer" parent="Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 40
+columns = 2
+
+[node name="GoalName" type="Label" parent="Content/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Goal Name: "
+
+[node name="GoalEdit" type="LineEdit" parent="Content/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(260, 30)
+layout_mode = 2
+theme = ExtResource("1_avtex")
+placeholder_text = "Enter your goal name"
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+script = ExtResource("3_wjyhb")
+
+[node name="TargetName" type="Label" parent="Content/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Target Time:"
+
+[node name="TargetContainer" type="HBoxContainer" parent="Content/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="HourEdit" type="LineEdit" parent="Content/VBoxContainer/GridContainer/TargetContainer"]
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 2
+placeholder_text = "00"
+script = ExtResource("4_sggm4")
+
+[node name="HourName" type="Label" parent="Content/VBoxContainer/GridContainer/TargetContainer"]
+layout_mode = 2
+text = "hours"
+
+[node name="MinuteEdit" type="LineEdit" parent="Content/VBoxContainer/GridContainer/TargetContainer"]
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 2
+placeholder_text = "00"
+script = ExtResource("5_qovd7")
+
+[node name="MinuteName" type="Label" parent="Content/VBoxContainer/GridContainer/TargetContainer"]
+layout_mode = 2
+text = "minutes"
+
+[node name="Control" type="Control" parent="Content/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ActionContainer" type="GridContainer" parent="Content/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 30
+columns = 3
+
+[node name="Confirm" type="Button" parent="Content/VBoxContainer/ActionContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+text = "Confirm"
+
+[node name="Discard" type="Button" parent="Content/VBoxContainer/ActionContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+text = "Discard"
+
+[node name="Delete" type="Button" parent="Content/VBoxContainer/ActionContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+text = "Delete
+"
+
+[connection signal="button_up" from="Content/VBoxContainer/ActionContainer/Confirm" to="." method="_on_confirm_button_up"]
+[connection signal="button_up" from="Content/VBoxContainer/ActionContainer/Discard" to="." method="_on_discard_button_up"]
+[connection signal="visibility_changed" from="Content/VBoxContainer/ActionContainer/Discard" to="." method="_on_discard_visibility_changed"]

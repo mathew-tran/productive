@@ -17,3 +17,9 @@ func GetAudioPlayer():
 	if result:
 		return result[0]
 	return null
+
+func GetGoals():
+	var result = get_tree().get_nodes_in_group("GoalContainer")
+	if result:
+		return result[0]
+	return null

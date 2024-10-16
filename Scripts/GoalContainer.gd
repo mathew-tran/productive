@@ -3,7 +3,11 @@ extends VBoxContainer
 
 var LastActivatedGoal = null
 # Called when the node enters the scene tree for the first time.
+
 var bIsPaused = false
+
+@onready var GoalClass = load("res://Scenes/Goal.tscn")
+
 func _ready():
 	for goal in get_children():
 		if goal is Goal:
@@ -28,6 +32,9 @@ func StopAllGoals():
 			goalchild.Stop()
 				
 func _input(event):
+	if Game.bIsInMenu:
+		return
+		
 	if event.is_action_pressed("pause"):
 		bIsPaused = !bIsPaused
 		if bIsPaused:
@@ -56,3 +63,9 @@ func UpdatePanels(index):
 	for x in range(0, len(get_children())):
 		get_child(x).ShowActivePanel(x == index)
 	
+func AddGoal(goalName, hours, minutes):
+	var instance = GoalClass.instantiate()
+	instance.GoalName = goalName
+	instance.GoalInHours = hours
+	instance.GoalInMinutes = minutes
+	add_child(instance)
