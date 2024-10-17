@@ -56,6 +56,7 @@ func CreateGoalsFromData(data):
 	
 func OnGoalActivated(goal):
 	LastActivatedGoal = goal
+	goal.grab_focus()
 	bIsPaused = false
 
 	
@@ -69,27 +70,12 @@ func _input(event):
 		
 		return		
 	if event.is_action_pressed("pause"):
-		bIsPaused = !bIsPaused
-		if bIsPaused:
-			StopAllGoals()
-		else:
-			if is_instance_valid(LastActivatedGoal):
-				LastActivatedGoal.Start()
-	if event.is_action_pressed("tab"):
-
-		bIsPaused = true
-		if LastActivatedGoal == null:
-			LastActivatedGoal = get_child(0)
-			UpdatePanels(0)
-			
-		else:
-			var index = get_children().find(LastActivatedGoal)
-			if index < get_child_count() - 1:
-				index += 1
+		if is_instance_valid(LastActivatedGoal):
+			bIsPaused = !bIsPaused
+			if bIsPaused:
+				LastActivatedGoal.Stop(true)
 			else:
-				index = 0 
-			LastActivatedGoal = get_child(index)
-			UpdatePanels(index)
+				LastActivatedGoal.Start()
 		
 		
 func UpdatePanels(index):

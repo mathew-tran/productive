@@ -25,6 +25,11 @@ func _ready():
 	Game.GoalCreate.connect(OnGoalCreate)
 	Game.GoalEdit.connect(OnGoalEdit)
 	
+func _input(event):
+	if visible:
+		if event.is_action_pressed("escape"):
+			visible = false
+			
 func OnGoalCreate():
 	ShowCreate()
 	
