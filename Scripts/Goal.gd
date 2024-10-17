@@ -15,6 +15,8 @@ var StoredSeconds = 0.0
 var StartTime
 var bHasBeenCompleted = false
 
+var RingType : Helper.RING_TYPE
+
 signal GoalActivated(goal)
 
 func GetData():
@@ -23,13 +25,23 @@ func GetData():
 		"TimeActivated" : StartTime,
 		"StoredSeconds" : StoredSeconds,
 		"GoalInHours" : GoalInHours,
-		"GoalInMinutes" : GoalInMinutes
+		"GoalInMinutes" : GoalInMinutes,
+		"RingType" : RingType
 	}
 	
 func Load(data):
 	GoalName = data["GoalName"]
 	StartTime = data["TimeActivated"]
 	StoredSeconds = data["StoredSeconds"]
+	GoalInHours = data["GoalInHours"]
+	GoalInMinutes = data["GoalInMinutes"]
+	RingType = data["RingType"]
+	
+	Initialize()
+	
+	if StartTime != null:
+		Stop(true)
+	Update()
 	
 func _ready():
 	Update()	
@@ -79,7 +91,8 @@ func GetTimeText(seconds, hours, minutes, bShowAll = false):
 	var result = ""
 	
 	if bShowAll:
-		result += str(round(hours)).pad_zeros(2) + "h "		
+		if hours > 0:
+			result += str(round(hours)).pad_zeros(2) + "h "		
 		result += str(round(minutes)).pad_zeros(2) + "m "
 		result += str(int(seconds) % 60).pad_zeros(2) + "sec"
 	else:
@@ -129,6 +142,7 @@ func Stop(bForce = false):
 	$AnimationPlayer.stop()
 	ShowActivePanel(false)
 	UpdateStoredTime()
+	$AudioStreamPlayer.stop()
 	
 	
 
@@ -141,7 +155,7 @@ func UpdateStoredTime():
 func _on_timer_timeout():
 	if bHasBeenCompleted == false and GetTotalSeconds() >= CompletionProgress.max_value:
 		bHasBeenCompleted = true
-		Helper.PlayComplete()
+		$AudioStreamPlayer.play()
 		
 	Update()
 
@@ -165,3 +179,10 @@ func _on_reset_button_button_up():
 func _on_edit_button_up():
 	Game.GoalEdit.emit(self)
 
+
+
+func _on_audio_stream_player_finished():
+	if RingType == Helper.RING_TYPE.SUBTLE:
+		pass
+	if RingType == Helper.RING_TYPE.ALARM:
+		$AudioStreamPlayer.play()

@@ -23,7 +23,7 @@ func _ready():
 		CreateGoalsFromData(data)
 		
 	else:
-		AddGoal("Work", 1, 0)
+		AddGoal("Work", 1, 0, Helper.RING_TYPE.ALARM)
 			
 
 func GetData():
@@ -46,12 +46,9 @@ func CreateGoalsFromData(data):
 	
 	print("Attempting to create data from save" + str(data))
 	for key in data.keys():
-		var instance = AddGoal(data[key]["GoalName"], data[key]["GoalInHours"], data[key]["GoalInMinutes"])
-		instance.StoredSeconds = data[key]["StoredSeconds"]
-		instance.StartTime = data[key]["TimeActivated"]
-		if instance.StartTime != null:
-			instance.Stop(true)
-		instance.Update()
+		var instance = AddGoal("",0,0, Helper.RING_TYPE.ALARM)
+		instance.Load(data[key])
+
 		
 	
 func OnGoalActivated(goal):
@@ -82,12 +79,13 @@ func UpdatePanels(index):
 	for x in range(0, len(get_children())):
 		get_child(x).ShowActivePanel(x == index)
 	
-func AddGoal(goalName, hours, minutes):
+func AddGoal(goalName, hours, minutes, ringType):
 	var instance = GoalClass.instantiate()
 	instance.GoalName = goalName
 	instance.GoalInHours = hours
 	instance.GoalInMinutes = minutes
 	instance.GoalActivated.connect(Callable(self, "OnGoalActivated"))
+	instance.RingType = ringType
 	instance.ShowActivePanel(false)
 	add_child(instance)
 	return instance

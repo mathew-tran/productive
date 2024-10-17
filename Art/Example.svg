@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="2.0283687"
-     inkscape:cx="215.44406"
-     inkscape:cy="138.78147"
+     inkscape:zoom="8.1134748"
+     inkscape:cx="373.08306"
+     inkscape:cy="59.592223"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-7"
@@ -33,11 +33,58 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
-     id="defs1" />
+     id="defs1">
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect18"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect17"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect16"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+  </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       style="fill:#2b2d46;fill-opacity:1;stroke:#000000;stroke-width:0.934135;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0"
+       id="rect18"
+       width="5.8313913"
+       height="5.8313913"
+       x="102.9865"
+       y="12.323401"
+       inkscape:export-filename="ResetButton.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <rect
        style="fill:#86a336;stroke-width:0.1"
        id="rect5"
@@ -173,5 +220,131 @@
        style="fill:#211f21;stroke-width:0.113226"
        d="m 69.373617,38.292686 v 18.21938 l 0.50406,0.31129 14.751,-9.109914 z"
        sodipodi:nodetypes="ccccc" />
+    <g
+       id="g18"
+       transform="matrix(0.99082171,0,0,0.99082171,1.5986838,0.80224559)">
+      <path
+         style="fill:#86a336;fill-opacity:0;stroke:#86a336;stroke-width:0.7;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 103.78859,14.919177 c -0.0384,0.161413 -0.0769,0.322828 0.008,0.518832 0.0846,0.196005 0.29207,0.426587 0.57647,0.538039 0.2844,0.111452 0.64565,0.103766 0.95311,-0.05765 0.30745,-0.161416 0.56109,-0.476549 0.68792,-0.90699 0.12682,-0.430441 0.12682,-0.97616 -0.0461,-1.298987 -0.17295,-0.322827 -0.51883,-0.422749 -0.8186,-0.426589 -0.29977,-0.0038 -0.55341,0.08839 -0.80706,0.180627"
+         id="path16"
+         inkscape:path-effect="#path-effect17"
+         inkscape:original-d="m 103.78859,14.919177 c 0,0 -0.0769,0.322826 -0.11534,0.484239 0.20754,0.230595 0.41506,0.46118 0.62259,0.691771 0.36127,-0.0077 0.72252,-0.01537 1.08378,-0.02306 0.25365,-0.315146 0.50729,-0.630279 0.76094,-0.945419 0,-0.545741 0,-1.09146 0,-1.63719 -0.34589,-0.09992 -0.69177,-0.199844 -1.03765,-0.299767 -0.25366,0.09224 -0.5073,0.184473 -0.76095,0.276708"
+         transform="rotate(-45,105.05627,14.079863)"
+         sodipodi:nodetypes="cccccccc" />
+      <path
+         style="fill:#86a336;fill-opacity:0;stroke:#86a336;stroke-width:0.799999;stroke-dasharray:none;stroke-opacity:1"
+         d="m 104.58412,12.843864 c 0,0 -0.47271,-0.945419 -0.47271,-0.945419 0,0 -1.37201,1.544954 -1.37201,1.544954 0,0 2.29437,0.161414 2.29437,0.161414 z"
+         id="path17"
+         inkscape:path-effect="#path-effect18"
+         inkscape:original-d="m 104.58412,12.843864 -0.47271,-0.945419 -1.37201,1.544954 2.29437,0.161414 z"
+         transform="matrix(0.35484977,-0.35484977,0.35484977,0.35484977,62.640842,46.489321)"
+         sodipodi:nodetypes="ccccc" />
+    </g>
+    <rect
+       style="fill:#2b2d46;fill-opacity:1;stroke:#000000;stroke-width:0.934135;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0"
+       id="rect19"
+       width="5.8313913"
+       height="5.8313913"
+       x="109.93741"
+       y="12.391739"
+       inkscape:export-filename="DeleteButton.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g19"
+       transform="matrix(0.70922712,0,0,0.70922712,32.652721,4.9062107)">
+      <rect
+         style="fill:#e11800;stroke-width:0.1"
+         id="rect14"
+         width="4.1506214"
+         height="4.1506214"
+         x="111.05218"
+         y="13.466459" />
+      <rect
+         style="fill:#e11800;stroke-width:0.1"
+         id="rect15"
+         width="4.9346275"
+         height="0.89930123"
+         x="110.61405"
+         y="12.336569" />
+      <path
+         id="path15"
+         style="fill:#e11800;stroke-width:0.041391"
+         d="m 113.06938,11.714071 a 0.85899191,0.77309265 0 0 0 -0.85515,0.725315 h 0.30437 a 0.55145158,0.49630639 0 0 1 0.54864,-0.467573 0.55145158,0.49630639 0 0 1 0.54885,0.467573 h 0.30844 a 0.85899191,0.77309265 0 0 0 -0.85515,-0.725315 z" />
+    </g>
+    <rect
+       style="fill:#2b2d46;fill-opacity:1;stroke:#000000;stroke-width:0.934135;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0"
+       id="rect23"
+       width="5.8313913"
+       height="5.8313913"
+       x="91.595352"
+       y="3.0997989"
+       inkscape:export-filename="Previewbutton.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g23"
+       transform="translate(-7.394882,-2.3302372)">
+      <rect
+         style="fill:#d7d6ce;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0"
+         id="rect20"
+         width="0.68481755"
+         height="1.9566216"
+         x="100.16128"
+         y="7.4915099" />
+      <rect
+         style="fill:#d7d6ce;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0"
+         id="rect21"
+         width="0.61959684"
+         height="3.1632047"
+         x="101.02545"
+         y="6.8719134" />
+      <path
+         id="rect22"
+         style="fill:#d7d6ce;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-opacity:0"
+         d="m 101.8244,7.2143219 1.82618,-0.8967849 v 4.108905 L 101.8244,9.7253194 Z"
+         sodipodi:nodetypes="ccccc" />
+    </g>
+    <rect
+       style="fill:#2b2d46;fill-opacity:1;stroke:#000000;stroke-width:0.934135;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0"
+       id="rect24"
+       width="5.8313913"
+       height="5.8313913"
+       x="96.345505"
+       y="19.241104"
+       inkscape:export-filename="PreviewbuttonBlocked.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g26"
+       transform="translate(-2.6447266,13.811067)">
+      <rect
+         style="fill:#d7d6ce;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0"
+         id="rect25"
+         width="0.68481755"
+         height="1.9566216"
+         x="100.16128"
+         y="7.4915099" />
+      <rect
+         style="fill:#d7d6ce;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0"
+         id="rect26"
+         width="0.61959684"
+         height="3.1632047"
+         x="101.02545"
+         y="6.8719134" />
+      <path
+         id="path26"
+         style="fill:#d7d6ce;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-opacity:0"
+         d="m 101.8244,7.2143219 1.82618,-0.8967849 v 4.108905 L 101.8244,9.7253194 Z"
+         sodipodi:nodetypes="ccccc" />
+    </g>
+    <rect
+       style="fill:#e11800;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0"
+       id="rect27"
+       width="0.87624222"
+       height="5.0268631"
+       x="30.189993"
+       y="94.855415"
+       transform="rotate(-60)" />
   </g>
 </svg>

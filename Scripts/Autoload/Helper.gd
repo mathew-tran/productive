@@ -1,5 +1,10 @@
 extends Node
 
+enum RING_TYPE {
+	SUBTLE,
+	ALARM
+}
+
 func PlayComplete():
 	GetAudioPlayer().stream = load("res://Audio/switch17.wav")
 	GetAudioPlayer().play()

@@ -4,7 +4,7 @@ extends Panel
 @onready var GoalEdit = $Content/VBoxContainer/GridContainer/GoalEdit
 @onready var HourEdit = $Content/VBoxContainer/GridContainer/TargetContainer/HourEdit
 @onready var MinuteEdit = $Content/VBoxContainer/GridContainer/TargetContainer/MinuteEdit
-
+@onready var RingEdit = $Content/VBoxContainer/GridContainer/RingContainer
 @onready var DeleteButton = $Content/VBoxContainer/ActionContainer/Delete
 
 
@@ -21,7 +21,7 @@ var GoalToEdit : Goal
 
 func _ready():
 	visible = false
-	Inputs = [GoalEdit, HourEdit, MinuteEdit]
+	Inputs = [GoalEdit, HourEdit, MinuteEdit, RingEdit]
 	Game.GoalCreate.connect(OnGoalCreate)
 	Game.GoalEdit.connect(OnGoalEdit)
 	
@@ -41,6 +41,7 @@ func ShowEdit(goal : Goal):
 	HourEdit.text = str(goal.GoalInHours)
 	MinuteEdit.text = str(goal.GoalInMinutes)
 	GoalTitle.text = "Edit: " + goal.GoalName
+	RingEdit.SetValue(goal.RingType)
 	CurrentMode = MODE.EDIT
 	DeleteButton.visible = false
 	GoalToEdit = goal
@@ -56,12 +57,13 @@ func ShowCreate():
 
 
 func AddGoal():
-	Helper.GetGoals().AddGoal(GoalEdit.Get(), HourEdit.Get(), MinuteEdit.Get())
+	Helper.GetGoals().AddGoal(GoalEdit.Get(), HourEdit.Get(), MinuteEdit.Get(), RingEdit.Get())
 	
 func UpdateGoal():
 	GoalToEdit.GoalName = GoalEdit.Get()
 	GoalToEdit.GoalInHours = HourEdit.Get()
 	GoalToEdit.GoalInMinutes = MinuteEdit.Get()
+	GoalToEdit.RingType = RingEdit.Get()
 	GoalToEdit.Update()
 	GoalToEdit.Initialize()
 	GoalToEdit.Stop(true)
@@ -94,3 +96,8 @@ func _on_discard_visibility_changed():
 	else:
 		Game.OutOfMenu.emit()
 	
+
+
+func _on_visibility_changed():
+	if is_visible_in_tree() == false:
+		$Content/VBoxContainer/GridContainer/RingContainer.OnClose()
