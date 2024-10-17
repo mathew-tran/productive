@@ -29,9 +29,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -225.0
-offset_top = -247.0
+offset_top = -150.0
 offset_right = 225.0
-offset_bottom = 53.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_13adb")
@@ -135,7 +135,7 @@ text = "Confirm"
 [node name="Discard" type="Button" parent="Content/VBoxContainer/ActionContainer"]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
-text = "Discard"
+text = "Cancel"
 
 [node name="Delete" type="Button" parent="Content/VBoxContainer/ActionContainer"]
 custom_minimum_size = Vector2(120, 60)

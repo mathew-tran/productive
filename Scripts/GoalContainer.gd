@@ -57,13 +57,6 @@ func CreateGoalsFromData(data):
 func OnGoalActivated(goal):
 	LastActivatedGoal = goal
 	bIsPaused = false
-	for goalchild in get_children():
-		if goalchild is Goal:
-			if goalchild != goal:
-				goalchild.Stop()
-				goalchild.ShowActivePanel(false)
-			else:
-				goalchild.ShowActivePanel(true)
 
 	
 func StopAllGoals():
@@ -73,8 +66,8 @@ func StopAllGoals():
 				
 func _input(event):
 	if Game.bIsInMenu:
-		return
 		
+		return		
 	if event.is_action_pressed("pause"):
 		bIsPaused = !bIsPaused
 		if bIsPaused:
@@ -83,7 +76,7 @@ func _input(event):
 			if is_instance_valid(LastActivatedGoal):
 				LastActivatedGoal.Start()
 	if event.is_action_pressed("tab"):
-		StopAllGoals()
+
 		bIsPaused = true
 		if LastActivatedGoal == null:
 			LastActivatedGoal = get_child(0)
@@ -112,3 +105,8 @@ func AddGoal(goalName, hours, minutes):
 	instance.ShowActivePanel(false)
 	add_child(instance)
 	return instance
+
+
+func _on_child_exiting_tree(node):
+	await get_tree().process_frame
+	SaveManager.Save()

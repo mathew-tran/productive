@@ -2,6 +2,7 @@ extends Node
 
 
 signal GoalCreate
+signal GoalEdit(goal)
 
 signal InMenu
 signal OutOfMenu

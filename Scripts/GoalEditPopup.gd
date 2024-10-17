@@ -16,34 +16,51 @@ enum MODE {
 
 var CurrentMode = MODE.CREATE
 var Inputs = []
+
+var GoalToEdit : Goal
+
 func _ready():
 	visible = false
 	Inputs = [GoalEdit, HourEdit, MinuteEdit]
 	Game.GoalCreate.connect(OnGoalCreate)
+	Game.GoalEdit.connect(OnGoalEdit)
 	
 func OnGoalCreate():
 	ShowCreate()
 	
+func OnGoalEdit(goal):
+	ShowEdit(goal)
+
+func ShowEdit(goal : Goal):
+	GoalEdit.text = goal.GoalName
+	HourEdit.text = str(goal.GoalInHours)
+	MinuteEdit.text = str(goal.GoalInMinutes)
+	GoalTitle.text = "Edit: " + goal.GoalName
+	CurrentMode = MODE.EDIT
+	DeleteButton.visible = false
+	GoalToEdit = goal
+	visible = true
 	
 func ShowCreate():
-	visible = true
 	for input in Inputs:
 		input.Reset()
 	GoalTitle.text = "Create a goal"
 	CurrentMode = MODE.CREATE
 	DeleteButton.visible = false
-	pass
-
-func ShowGoal(goal : Goal):
 	visible = true
-	GoalTitle.text = "Edit Goal: " + goal.GoalName
 
 
 func AddGoal():
 	Helper.GetGoals().AddGoal(GoalEdit.Get(), HourEdit.Get(), MinuteEdit.Get())
 	
 func UpdateGoal():
-	pass
+	GoalToEdit.GoalName = GoalEdit.Get()
+	GoalToEdit.GoalInHours = HourEdit.Get()
+	GoalToEdit.GoalInMinutes = MinuteEdit.Get()
+	GoalToEdit.Update()
+	GoalToEdit.Initialize()
+	GoalToEdit.Stop(true)
+	SaveManager.Save()
 
 func _on_discard_button_up():
 	visible = false

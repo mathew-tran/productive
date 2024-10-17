@@ -37,6 +37,7 @@ func _ready():
 	
 func Initialize():
 	CompletionProgress.min_value = 0
+	bHasBeenCompleted = false
 	$Timer.start()
 	$Timer.paused = true
 	
@@ -44,6 +45,7 @@ func Initialize():
 	seconds += GoalInMinutes * 60
 	seconds += GoalInHours * 60 * 60
 	CompletionProgress.max_value = seconds
+	Update()
 	
 func GetTotalSeconds():
 	var totalSeconds = StoredSeconds
@@ -115,6 +117,7 @@ func Start():
 	$HBoxContainer/Button.ForcePlay()
 	Helper.PlayStart()
 	$AnimationPlayer.play("anim")
+	ShowActivePanel(true)
 	SaveManager.Save()
 	
 func Stop(bForce = false):
@@ -124,7 +127,7 @@ func Stop(bForce = false):
 	$HBoxContainer/Button.ForceStop()
 	Helper.PlayStop()
 	$AnimationPlayer.stop()
-	
+	ShowActivePanel(false)
 	UpdateStoredTime()
 	
 	
@@ -144,3 +147,21 @@ func _on_timer_timeout():
 
 func ShowActivePanel(bShow):
 	$Panel/ActivePanel.visible = bShow
+	$OptionButtons.visible = !bShow
+
+
+func _on_delete_button_up():
+	queue_free()
+	
+
+
+func _on_reset_button_button_up():
+	
+	Stop(true)
+	StoredSeconds = 0
+	Update()
+
+
+func _on_edit_button_up():
+	Game.GoalEdit.emit(self)
+

@@ -4,6 +4,11 @@ func _ready():
 	text_changed.connect(OnTextChanged)
 	max_length = 2
 
+	focus_entered.connect(OnFocusEntered)
+	
+func OnFocusEntered():
+	caret_column = text.length()
+	
 func IsValid():
 	return int(text) > 0
 	

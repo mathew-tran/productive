@@ -33,15 +33,15 @@ offset_top = 10.0
 offset_right = 510.0
 offset_bottom = 79.0
 theme_override_font_sizes/font_size = 50
-text = "WEEKLY GOALS"
+text = "GOALS"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 18.0
-offset_top = 81.0
-offset_right = 518.0
-offset_bottom = 493.0
-scale = Vector2(1.2, 1.2)
+offset_left = 28.0
+offset_top = 92.0
+offset_right = 528.0
+offset_bottom = 504.0
+scale = Vector2(2, 2)
 theme_override_constants/separation = 30
 
 [node name="GoalContainer" type="VBoxContainer" parent="VBoxContainer" groups=["GoalContainer"]]
@@ -73,4 +73,5 @@ script = ExtResource("4_ak44c")
 visible = false
 layout_mode = 1
 
+[connection signal="child_exiting_tree" from="VBoxContainer/GoalContainer" to="VBoxContainer/GoalContainer" method="_on_child_exiting_tree"]
 [connection signal="button_up" from="AddGoalButton" to="AddGoalButton" method="_on_button_up"]
