@@ -70,21 +70,22 @@ _data = {
 }
 
 [node name="Goal" type="Control"]
-custom_minimum_size = Vector2(500, 100)
+custom_minimum_size = Vector2(835, 200)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 515.0
-offset_bottom = 100.0
+offset_right = 835.0
+offset_bottom = 200.0
 pivot_offset = Vector2(250, 50)
 script = ExtResource("1_1uym3")
 
 [node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(520, 100)
+custom_minimum_size = Vector2(420, 100)
 layout_mode = 0
 offset_left = -7.0
 offset_top = -7.0
-offset_right = 511.0
-offset_bottom = 88.0
+offset_right = 413.0
+offset_bottom = 93.0
+scale = Vector2(2, 2)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_04v2r")
 
@@ -96,9 +97,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -255.0
+offset_left = -204.0
 offset_top = -45.0
-offset_right = 255.0
+offset_right = 206.0
 offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -108,10 +109,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_dy6u0")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
-offset_left = 6.0
-offset_top = 3.0
-offset_right = 503.0
-offset_bottom = 84.0
+offset_left = 15.0
+offset_top = 11.0
+offset_right = 512.0
+offset_bottom = 92.0
+scale = Vector2(2, 2)
 mouse_filter = 2
 theme_override_constants/separation = 11
 
@@ -132,7 +134,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_e342l")
@@ -145,12 +147,12 @@ text = "0.2 / 1.2 hours"
 
 [node name="OptionButtons" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 416.0
-offset_top = -4.0
-offset_right = 530.0
-offset_bottom = 36.0
-scale = Vector2(0.8, 0.8)
+offset_left = 646.0
+offset_right = 760.0
+offset_bottom = 40.0
+scale = Vector2(1.5, 1.5)
 mouse_filter = 2
+metadata/_edit_group_ = true
 
 [node name="Edit" type="Button" parent="OptionButtons"]
 layout_mode = 2
@@ -177,6 +179,15 @@ speed_scale = 0.5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_j40br")
+
+[node name="AlarmType" type="Label" parent="."]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 156.0
+offset_right = 813.0
+offset_bottom = 179.0
+text = "SUBTLE"
+horizontal_alignment = 2
 
 [connection signal="CustomPress" from="HBoxContainer/Button" to="." method="_on_button_custom_press"]
 [connection signal="button_up" from="OptionButtons/Edit" to="." method="_on_edit_button_up"]

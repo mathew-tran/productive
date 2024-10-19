@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bl3b5cw4p7i4d"]
+[gd_scene load_steps=10 format=3 uid="uid://bl3b5cw4p7i4d"]
 
 [ext_resource type="Theme" uid="uid://bn6x1rblbqp5t" path="res://Themes/TextFieldTheme.tres" id="1_avtex"]
 [ext_resource type="Script" path="res://Scripts/GoalEditPopup.gd" id="1_bnght"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/InputFields/HourEdit.gd" id="4_sggm4"]
 [ext_resource type="Script" path="res://Scripts/InputFields/MinuteEdit.gd" id="5_qovd7"]
 [ext_resource type="PackedScene" uid="uid://7efecgqj2pr1" path="res://Scenes/RingContainer.tscn" id="6_cdigk"]
+[ext_resource type="Theme" uid="uid://bllcmaeikx5al" path="res://Themes/ButtonTheme.tres" id="7_6bhaq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13adb"]
 bg_color = Color(8.00174e-07, 0.296611, 0.138354, 1)
@@ -142,16 +143,19 @@ columns = 3
 [node name="Confirm" type="Button" parent="Content/VBoxContainer/ActionContainer"]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
+theme = ExtResource("7_6bhaq")
 text = "Confirm"
 
 [node name="Discard" type="Button" parent="Content/VBoxContainer/ActionContainer"]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
+theme = ExtResource("7_6bhaq")
 text = "Cancel"
 
 [node name="Delete" type="Button" parent="Content/VBoxContainer/ActionContainer"]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
+theme = ExtResource("7_6bhaq")
 text = "Delete
 "
 

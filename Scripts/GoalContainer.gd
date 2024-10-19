@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Container
 
 
 var LastActivatedGoal = null
@@ -62,18 +62,6 @@ func StopAllGoals():
 		if goalchild is Goal:
 			goalchild.Stop()
 				
-func _input(event):
-	if Game.bIsInMenu:
-		
-		return		
-	if event.is_action_pressed("pause"):
-		if is_instance_valid(LastActivatedGoal):
-			bIsPaused = !bIsPaused
-			if bIsPaused:
-				LastActivatedGoal.Stop(true)
-			else:
-				LastActivatedGoal.Start()
-		
 		
 func UpdatePanels(index):
 	for x in range(0, len(get_children())):

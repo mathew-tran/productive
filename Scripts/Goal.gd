@@ -82,7 +82,11 @@ func Update():
 		
 	var weight = CompletionProgress.value / CompletionProgress.max_value
 	CompletionProgress.modulate = lerp(Color.YELLOW, Color.GREEN, weight)
-	
+	if RingType == Helper.RING_TYPE.SUBTLE:
+		$AlarmType.text = "SUBTLE"
+	if RingType == Helper.RING_TYPE.ALARM:
+		$AlarmType.text = "ALARM
+		"
 func GetGoalText():
 	return GetTimeText(0, GoalInHours, GoalInMinutes)
 	
