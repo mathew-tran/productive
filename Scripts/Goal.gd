@@ -7,6 +7,7 @@ class_name Goal
 @onready var GoalTitle = $HBoxContainer/VBoxContainer/GoalTitle
 @onready var HoursWorked = $HBoxContainer/VBoxContainer/HoursWorked
 @onready var CompletionProgress = $HBoxContainer/VBoxContainer/HBoxContainer/ProgressBar
+@onready var ProgressPercentText = $HBoxContainer/VBoxContainer/HBoxContainer/ProgressBar/ProgressPercent
 
 var StoredSeconds = 0.0
 @export var GoalInHours = 40
@@ -74,6 +75,7 @@ func Update():
 	var totalSeconds = GetTotalSeconds()
 	HoursWorked.text = ConvertSecondsIntoText(totalSeconds) + " / " + GetGoalText()
 	CompletionProgress.value = totalSeconds	
+	ProgressPercentText.text = str(snapped(((totalSeconds / CompletionProgress.max_value)* 100), .01)).pad_decimals(1) + "%"
 	
 	if totalSeconds >= CompletionProgress.max_value:
 		HoursWorked.modulate = Color.GREEN
