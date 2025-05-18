@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://bl3b5cw4p7i4d"]
 
 [ext_resource type="Theme" uid="uid://bn6x1rblbqp5t" path="res://Themes/TextFieldTheme.tres" id="1_avtex"]
-[ext_resource type="Script" path="res://Scripts/GoalEditPopup.gd" id="1_bnght"]
-[ext_resource type="Script" path="res://Scripts/InputFields/GoalEdit.gd" id="3_wjyhb"]
-[ext_resource type="Script" path="res://Scripts/InputFields/HourEdit.gd" id="4_sggm4"]
-[ext_resource type="Script" path="res://Scripts/InputFields/MinuteEdit.gd" id="5_qovd7"]
+[ext_resource type="Script" uid="uid://dq2nv8g5icov" path="res://Scripts/GoalEditPopup.gd" id="1_bnght"]
+[ext_resource type="Script" uid="uid://c6mubxar102dv" path="res://Scripts/InputFields/GoalEdit.gd" id="3_wjyhb"]
+[ext_resource type="Script" uid="uid://hws7rf1cigs7" path="res://Scripts/InputFields/HourEdit.gd" id="4_sggm4"]
+[ext_resource type="Script" uid="uid://llwqcifvg4ba" path="res://Scripts/InputFields/MinuteEdit.gd" id="5_qovd7"]
 [ext_resource type="PackedScene" uid="uid://7efecgqj2pr1" path="res://Scenes/RingContainer.tscn" id="6_cdigk"]
 [ext_resource type="Theme" uid="uid://bllcmaeikx5al" path="res://Themes/ButtonTheme.tres" id="7_6bhaq"]
 

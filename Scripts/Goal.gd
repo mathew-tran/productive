@@ -60,20 +60,13 @@ func Initialize():
 	CompletionProgress.max_value = seconds
 	Update()
 	
-func GetTotalSeconds():
-	var totalSeconds = StoredSeconds
-	
-	if StartTime != null:
-		var currentTime = Time.get_unix_time_from_system()
-		var currentSeconds = currentTime - StartTime
-		totalSeconds += currentSeconds
-	return totalSeconds
+
 	
 func Update():
 	GoalTitle.text = GoalName
 	
-	var totalSeconds = GetTotalSeconds()
-	HoursWorked.text = ConvertSecondsIntoText(totalSeconds) + " / " + GetGoalText()
+	var totalSeconds = Helper.GetTotalSeconds(StoredSeconds, StartTime)
+	HoursWorked.text = Helper.ConvertSecondsIntoText(totalSeconds) + " / " +  Helper.GetTimeText(0, int(GoalInHours), int(GoalInMinutes), false)
 	CompletionProgress.value = totalSeconds	
 	ProgressPercentText.text = str(snapped(((totalSeconds / CompletionProgress.max_value)* 100), .01)).pad_decimals(1) + "%"
 	
@@ -89,39 +82,6 @@ func Update():
 	if RingType == Helper.RING_TYPE.ALARM:
 		$AlarmType.text = "ALARM
 		"
-func GetGoalText():
-	return GetTimeText(0, GoalInHours, GoalInMinutes)
-	
-	
-func GetTimeText(seconds, hours, minutes, bShowAll = false):
-	var result = ""
-	
-	if bShowAll:
-		if hours > 0:
-			result += str(round(hours)).pad_zeros(2) + "h "		
-		result += str(round(minutes)).pad_zeros(2) + "m "
-		result += str(int(seconds) % 60).pad_zeros(2) + "sec"
-	else:
-		if hours != 0 or minutes != 0:
-			if hours > 0:
-				result += str(round(hours)).pad_zeros(2) + "h "
-			
-			result += str(round(minutes)).pad_zeros(2) + "m"
-		else:
-			if seconds > 0:
-				result += str((int(seconds % 60))).pad_zeros(2) + "sec"
-			else:
-				result = "--"
-	return result
-	
-func ConvertSecondsIntoText(seconds):	
-	if seconds == 0:
-		return GetTimeText(0, 0, 0)
-	var hours = int(seconds / 3600)
-	var minutes = int((int(seconds) % 3600) / 60)
-	
-	var result = GetTimeText(seconds, hours, minutes, true)
-	return result
 
 func _on_button_custom_press(bIsPlaying):
 	if bIsPlaying:
@@ -159,7 +119,7 @@ func UpdateStoredTime():
 		SaveManager.Save()
 	
 func _on_timer_timeout():
-	if bHasBeenCompleted == false and GetTotalSeconds() >= CompletionProgress.max_value:
+	if bHasBeenCompleted == false and Helper.GetTotalSeconds(StoredSeconds, StartTime) >= CompletionProgress.max_value:
 		bHasBeenCompleted = true
 		$AudioStreamPlayer.play()
 		
@@ -174,9 +134,7 @@ func _on_delete_button_up():
 	queue_free()
 	
 
-
 func _on_reset_button_button_up():
-	
 	Stop(true)
 	StoredSeconds = 0
 	Update()
